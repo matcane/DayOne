@@ -1,18 +1,16 @@
-import { router } from "expo-router";
-import { Pressable } from "react-native";
-import { Text } from "react-native-paper";
-
-import DefaultView from "@/components/DefaultView";
+import AuthForm from "@/components/AuthForm";
+import useAuthStore from "@/store/authStore";
 
 export default function SignIn() {
-  const onPress = () => {
-    router.replace("(app)");
-  };
+  const signIn = useAuthStore((state) => state.signIn);
+
   return (
-    <DefaultView>
-      <Pressable onPress={onPress}>
-        <Text variant="titleLarge">Login</Text>
-      </Pressable>
-    </DefaultView>
+    <AuthForm
+      title="Sign In"
+      buttonText="Login"
+      linkText={["Don't have an account?", "Register"]}
+      linkHref="sign-up"
+      onSubmit={signIn}
+    />
   );
 }
